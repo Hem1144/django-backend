@@ -1,0 +1,45 @@
+{% extends "home/base.html" %} {% block start %}
+<h1>This Index Page</h1>
+
+<a href="/contact/">Contact</a><br />
+<a href="/about/">About</a>
+
+<table class="container">
+  <tr>
+    <th>S.No.</th>
+    <th>Name</th>
+    <th>Age</th>
+    <th>Can Vote</th>
+  </tr>
+  {% for people in peoples %}
+  <tr>
+    <td>{{ forloop.counter }}</td>
+    <td>{{ people.name }}</td>
+    <td>{{ people.age }}</td>
+    <td {% if people.age < 18 %} style="background: red" {% endif %}>
+      {% if people.age >= 18 %} 👍 {% else %} 👎 {% endif %}
+    </td>
+  </tr>
+  {% endfor %}
+</table>
+
+<p>
+  {% if "Tomato" in vegetables %} Yes, "Tomato" is available {% else %} "Tomato"
+  is not available {% endif %}
+</p>
+
+<p>The first element of the vegetables array is: {{ vegetables.0 }}</p>
+
+{% for vegetable in vegetables %} {% if forloop.first %}
+<p>
+  The first element "{{ vegetable }}" has the first character "{{
+  vegetable|slice:":1" }}"
+</p>
+{% endif %} {% endfor %}
+
+<p>
+  The first character of the third element ("{{ vegetables.2 }}") is: "{{
+  vegetables.2|slice:":1" }}"
+</p>
+
+{% endblock %}

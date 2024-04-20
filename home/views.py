@@ -14,16 +14,26 @@ def home(request):
 
     vegetables = ["Pumpkin", "Tomato", "Cauliflower", "Cabbage"]
 
-    text = """Lorem ipsum dolor sit amet consectetur adipisicing elit. Rerum ullam impedit totam! Atque, debitis officiis amet sed veritatis voluptatibus. Voluptate, sed impedit quae suscipit magni cumque eum optio, dignissimos dicta cupiditate tenetur corrupti sequi amet dolorum earum soluta pariatur nemo aliquam nobis laboriosam explicabo, distinctio provident. A sunt voluptatem quaerat hic rem quisquam reprehenderit quod quo repellendus, veritatis, earum dignissimos voluptatum quasi eos minima provident omnis quas. Qui tempora facere suscipit asperiores earum est distinctio tenetur, quam dignissimos eum porro veniam expedita sequi voluptatem! Expedita velit, necessitatibus libero sed, fugit et molestias ipsum iusto, totam rerum maiores. Amet, provident eaque."""
-
     return render(
         request,
-        "index.html",
-        context={"peoples": pepoles, "text": text, "vegetables": vegetables},
+        "home/index.html",
+        context={
+            "peoples": pepoles,
+            "page": "Django Tutorial",
+            "vegetables": vegetables,
+        },
     )
 
 
-def success_page(request):
+def about(request):
+    context = {"page": "About"}
+    return render(request, "home/about.html", context)
 
-    print("*" * 10)
+
+def contact(request):
+    context = {"page": "Contact"}
+    return render(request, "home/contact.html", context)
+
+
+def success_page(request):
     return HttpResponse("<h1>This is a Success Page</h1>")
